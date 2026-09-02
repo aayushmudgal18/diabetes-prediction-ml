@@ -1,0 +1,489 @@
+/* ==========================================================================
+   Diabetes Risk Assessment — "Lab Report" design system
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+    --bg:            #EFF4F2;
+    --paper:         #FFFFFF;
+    --ink:           #12211D;
+    --muted:         #5B6B66;
+    --line:          #D7E2DD;
+    --line-strong:   #B9C8C2;
+
+    --accent:        #0B6E5C;
+    --accent-soft:   #E4F2EE;
+
+    --danger:        #B3261E;
+    --danger-soft:   #FCEBEA;
+    --safe:          #1E7D46;
+    --safe-soft:     #E7F6ED;
+    --amber:         #B5790A;
+
+    --font-display:  'Space Grotesk', sans-serif;
+    --font-body:     'Inter', sans-serif;
+    --font-mono:     'IBM Plex Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    background-image:
+        linear-gradient(var(--line) 1px, transparent 1px);
+    background-size: 100% 42px;
+    color: var(--ink);
+    min-height: 100vh;
+}
+
+.page {
+    width: 100%;
+    max-width: 880px;
+    margin: auto;
+    padding: 32px 25px 60px;
+}
+
+/* ==========================================================================
+   Header — reads like the top strip of a printed chart
+   ========================================================================== */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 18px;
+    margin-bottom: 44px;
+    border-bottom: 2px solid var(--ink);
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.logo::before {
+    content: '+';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: var(--accent);
+    color: var(--paper);
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.badge {
+    background: var(--paper);
+    padding: 7px 13px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--line-strong);
+}
+
+/* ==========================================================================
+   Intro
+   ========================================================================== */
+
+.intro {
+    margin-bottom: 36px;
+}
+
+.intro .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.intro h1 {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -1px;
+    margin-bottom: 14px;
+}
+
+.intro h1 span {
+    color: var(--accent);
+}
+
+.intro p {
+    max-width: 560px;
+    color: var(--muted);
+    font-size: 15.5px;
+    line-height: 1.6;
+}
+
+/* ECG-style divider — the signature element */
+
+.vitals-rule {
+    width: 100%;
+    height: 28px;
+    margin: 30px 0;
+    background-repeat: repeat-x;
+    background-size: 120px 28px;
+    background-position: left center;
+    opacity: 0.55;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='28' viewBox='0 0 120 28'%3E%3Cpath d='M0 14 H30 L36 4 L44 24 L50 14 H70 L76 8 L82 20 L88 14 H120' fill='none' stroke='%230B6E5C' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   Card / Form
+   ========================================================================== */
+
+.card {
+    background: var(--paper);
+    border-radius: 6px;
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 1px 0 var(--line-strong);
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    padding: 26px 32px;
+    border-bottom: 1px dashed var(--line-strong);
+}
+
+.card-header h2 {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.card-header p {
+    color: var(--muted);
+    font-size: 13.5px;
+}
+
+.card-header .panel-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    text-align: right;
+    line-height: 1.5;
+}
+
+form {
+    padding: 30px 32px 32px;
+}
+
+fieldset {
+    border: none;
+}
+
+legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 18px;
+    position: relative;
+}
+
+.form-group .field-index {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+}
+
+label {
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+label .unit {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+    text-transform: none;
+}
+
+input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    background: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--ink);
+    transition: 0.15s;
+}
+
+input::placeholder {
+    color: #9AA8A3;
+}
+
+input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+    border-color: var(--accent);
+    background: var(--paper);
+}
+
+button {
+    width: 100%;
+    margin-top: 28px;
+    padding: 16px;
+    border: none;
+    border-radius: 5px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+button:hover {
+    background: var(--accent);
+}
+
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Result — printed readout
+   ========================================================================== */
+
+.result-card {
+    margin-top: 26px;
+    background: var(--paper);
+    border-radius: 6px;
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 1px 0 var(--line-strong);
+    padding: 30px 32px 34px;
+}
+
+.result-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--line-strong);
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 16px;
+    border-radius: 5px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+
+.status::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status.danger {
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+
+.status.danger::before {
+    background: var(--danger);
+}
+
+.status.safe {
+    background: var(--safe-soft);
+    color: var(--safe);
+}
+
+.status.safe::before {
+    background: var(--safe);
+}
+
+/* Probability gauge */
+
+.probability-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+}
+
+.probability-label span {
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.probability-label strong {
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.gauge {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    border-radius: 3px;
+    background: linear-gradient(
+        to right,
+        var(--safe) 0%,
+        var(--safe) 30%,
+        var(--amber) 30%,
+        var(--amber) 60%,
+        var(--danger) 60%,
+        var(--danger) 100%
+    );
+    opacity: 0.28;
+    margin-bottom: 4px;
+}
+
+.gauge-marker {
+    position: absolute;
+    top: -5px;
+    width: 3px;
+    height: 20px;
+    background: var(--ink);
+    border-radius: 2px;
+    transform: translateX(-50%);
+}
+
+.gauge-scale {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 8px;
+}
+
+.disclaimer {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line-strong);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+footer {
+    text-align: center;
+    margin-top: 48px;
+    color: #93A29D;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+}
+
+/* ==========================================================================
+   Mobile
+   ========================================================================== */
+
+@media (max-width: 700px) {
+
+    .page {
+        padding: 20px 16px 44px;
+    }
+
+    header {
+        margin-bottom: 32px;
+    }
+
+    .intro h1 {
+        font-size: 32px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .card-header .panel-tag {
+        text-align: left;
+    }
+
+    form {
+        padding: 24px 20px 26px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-card {
+        padding: 24px 20px 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}

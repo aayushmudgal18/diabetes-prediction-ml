@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Enter patient health measurements to generate a machine learning diabetes risk prediction.">
+
+<title>Diabetes Risk Prediction</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='static.css') }}">
+```
+
+</head>
+
+<body>
+
+```
+<div class="page">
+
+    <!-- Header -->
+
+    <header>
+
+        <div class="logo">
+            HealthPredict
+        </div>
+
+        <div class="badge">
+            ML Prediction
+        </div>
+
+    </header>
+
+
+    <!-- Main Content -->
+
+    <main>
+
+        <section class="intro">
+
+            <span class="eyebrow">
+                Patient Intake · Panel 08
+            </span>
+
+            <h1>
+                Diabetes Risk
+                <span>Prediction</span>
+            </h1>
+
+            <p>
+                Enter the patient's health measurements below.
+                The model returns a predicted risk classification
+                and probability score based on the values you provide.
+            </p>
+
+        </section>
+
+
+        <div class="vitals-rule" role="presentation"></div>
+
+
+        <!-- Prediction Form -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Patient Information</h2>
+
+                    <p>
+                        All eight fields are required to generate
+                        a model prediction.
+                    </p>
+
+                </div>
+
+                <div class="panel-tag">
+                    FORM&nbsp;/&nbsp;PREDICT<br>
+                    8&nbsp;MEASUREMENTS
+                </div>
+
+            </div>
+
+
+            <form action="/predict" method="POST" autocomplete="off">
+
+                <fieldset>
+
+                    <legend>
+                        Patient health measurements
+                    </legend>
+
+                    <div class="form-grid">
+
+
+                        <!-- Pregnancies -->
+
+                        <div class="form-group">
+
+                            <span class="field-index">
+                                01
+                            </span>
+
+                            <label for="pregnancies">
+                                Pregnancies
+                                <span class="unit">
+                                    count
+                                </span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="pregnancies"
+                                name="pregnancies"
+                                min="0"
+                                step="1"
+                                inputmode="numeric"
+                                placeholder="e.g. 2"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Glucose -->
+
+                        <div class="form-group">
+
+                            <span class="field-index">
+                                02
+                            </span>
+
+                            <label for="glucose">
+                                Glucose
+                                <span class="unit">
+                                    mg/dL
+                                </span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="glucose"
+                                name="glucose"
+                                min="0"
+                                step="0.1"
+                                inputmode="decimal"
+                                placeholder="e.g. 120"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Blood Pressure -->
+
+                        <div class="form-group">
+
+                            <span class="field-index">
+                                03
+                            </span>
+
+                            <label for="blood_pressure">
+                                Blood Pressure
+                                <span class="unit">
+                                    mm Hg
+                                </span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="blood_pressure"
+                                name="blood_pressure"
+                                min="0"
+                                step="0.1"
+                                inputmode="decimal"
+                                placeholder="e.g. 80"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Skin Thickness -->
+
+                        <div class="form-group">
+
+                            <span class="field-index">
+                                04
+                            </span>
+
+                            <label for="skin_thickness">
+                                Skin Thickness
+                                <span class="unit">
+                                    mm
+                                </span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="skin_thickness"
+                                name="skin_thickness"
+                                min="0"
+                                step="0.1"
+                                inputmode="decimal"
+                                placeholder="e.g. 25"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Insulin -->
+
+                        <div class="form-group">
+
+                            <span class="field-index">
+                                05
+                            </span>
+
+                            <label for="insulin">
+                                Insulin
+                                <span class="unit">
+                                    mu U/mL
+                                </span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="insulin"
+                                name="insulin"
+                                min="0"
+                                step="0.1"
+                                inputmode="decimal"
+                                placeholder="e.g. 100"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- BMI -->
+
+                        <div class="form-group">
+
+                            <span class="field-index">
+                                06
+                            </span>
+
+                            <label for="bmi">
+                                BMI
+                                <span class="unit">
+                                    kg/m²
+                                </span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="bmi"
+                                name="bmi"
+                                min="0"
+                                step="0.1"
+                                inputmode="decimal"
+                                placeholder="e.g. 28.5"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Diabetes Pedigree -->
+
+                        <div class="form-group">
+
+                            <span class="field-index">
+                                07
+                            </span>
+
+                            <label for="diabetes_pedigree">
+                                Pedigree Function
+                                <span class="unit">
+                                    score
+                                </span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="diabetes_pedigree"
+                                name="diabetes_pedigree"
+                                min="0"
+                                step="0.001"
+                                inputmode="decimal"
+                                placeholder="e.g. 0.5"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Age -->
+
+                        <div class="form-group">
+
+                            <span class="field-index">
+                                08
+                            </span>
+
+                            <label for="age">
+                                Age
+                                <span class="unit">
+                                    years
+                                </span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="age"
+                                name="age"
+                                min="1"
+                                step="1"
+                                inputmode="numeric"
+                                placeholder="e.g. 45"
+                                required
+                            >
+
+                        </div>
+
+
+                    </div>
+
+                </fieldset>
+
+
+                <button type="submit">
+                    Predict Diabetes Risk
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- Result -->
+
+        {% if prediction %}
+
+        <div class="result-card"
+             role="status"
+             aria-live="polite">
+
+            <div class="result-title">
+                Prediction Result
+            </div>
+
+
+            <div class="prediction">
+
+                {% if prediction == "Diabetes" %}
+
+                <div class="status danger">
+                    Diabetes Predicted
+                </div>
+
+                {% else %}
+
+                <div class="status safe">
+                    No Diabetes Predicted
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Probability -->
+
+            <div class="probability">
+
+                <div class="probability-label">
+
+                    <span>
+                        Diabetes Probability
+                    </span>
+
+                    <strong>
+                        {{ probability }}%
+                    </strong>
+
+                </div>
+
+
+                <div class="gauge">
+
+                    <div
+                        class="gauge-marker"
+                        style="left: {{ probability }}%;">
+                    </div>
+
+                </div>
+
+
+                <div class="gauge-scale">
+
+                    <span>0%</span>
+                    <span>25%</span>
+                    <span>50%</span>
+                    <span>75%</span>
+                    <span>100%</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Important Disclaimer -->
+
+            <div class="disclaimer">
+
+                <strong>Important Notice</strong>
+
+                <p>
+                    This prediction is generated by a machine
+                    learning model and is intended for educational
+                    and demonstration purposes only.
+                </p>
+
+                <p>
+                    It is <strong>not a medical diagnosis</strong>
+                    and should not be used to make medical decisions,
+                    determine treatment, or replace professional
+                    medical advice.
+                </p>
+
+                <p>
+                    The probability shown is an estimate produced
+                    by the machine learning model based on the
+                    information entered. It may not accurately
+                    represent an individual's actual risk.
+                </p>
+
+                <p>
+                    Predictions may be affected by data quality,
+                    differences between individuals, and limitations
+                    of the dataset used to train the model.
+                </p>
+
+                <p>
+                    If you have concerns about diabetes or your
+                    health, please consult a qualified healthcare
+                    professional for proper evaluation and medical
+                    advice.
+                </p>
+
+            </div>
+
+
+        </div>
+
+        {% endif %}
+
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        Diabetes Prediction · Machine Learning Project
+
+    </footer>
+
+</div>
+```
+
+</body>
+
+</html>
